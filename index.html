@@ -600,6 +600,21 @@
   }
   .gallery-img:hover { opacity: 0.85; transform: scale(1.02); }
 
+
+  /* GALLERY SCROLL */
+  .gallery-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+  }
+  .gallery-wrap::-webkit-scrollbar { display: none; }
+  .gallery-wrap img { flex-shrink: 0; }
+
+  @media (max-width: 760px) {
+    .gallery-wrap { flex-wrap: nowrap; }
+  }
+
   /* Scroll animation */
   .fade-in {
     opacity: 0;
