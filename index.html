@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amy Mead — How I Think</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1714;
+    --ink-mid: #4a4540;
+    --ink-light: #8a8278;
+    --cream: #faf7f2;
+    --cream-2: #f2ede4;
+    --warm-line: #ddd5c8;
+    --accent: #b5551a;
+    --accent-soft: #f2e8df;
+    --tag-auto: #d4e8d8;
+    --tag-auto-text: #2d5c35;
+    --tag-build: #dde3f0;
+    --tag-build-text: #2a3d72;
+    --tag-content: #f0dde8;
+    --tag-content-text: #6b2a4a;
+    --tag-design: #f0ead4;
+    --tag-design-text: #5c4a10;
+    --tag-product: #e8ddf0;
+    --tag-product-text: #4a2a6b;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid var(--warm-line);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--ink-mid);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HAMBURGER */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+    z-index: 200;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: all 0.25s;
+    transform-origin: center;
+  }
+
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  @media (max-width: 760px) {
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: fixed;
+      top: 56px; left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--warm-line);
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      z-index: 150;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .nav-links.open { display: flex; }
+
+    .nav-links li { border-bottom: 1px solid var(--warm-line); }
+
+    .nav-links a {
+      display: block;
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  /* HERO */
+  .hero {
+    padding: 140px 2rem 100px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-body {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--ink-mid);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--warm-line);
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* SECTION */
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--warm-line);
+  }
+
+  /* PROJECT CARDS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    border: 1px solid var(--warm-line);
+    background: var(--warm-line);
+  }
+
+  .project-card {
+    background: var(--cream);
+    padding: 2rem 2.5rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .project-card:hover {
+    background: var(--cream-2);
+  }
+
+  .project-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    font-style: italic;
+    min-width: 2rem;
+  }
+
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--ink);
+    flex: 1;
+    line-height: 1.3;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .tag-automation { background: var(--tag-auto); color: var(--tag-auto-text); }
+  .tag-build { background: var(--tag-build); color: var(--tag-build-text); }
+  .tag-content { background: var(--tag-content); color: var(--tag-content-text); }
+  .tag-design { background: var(--tag-design); color: var(--tag-design-text); }
+  .tag-product { background: var(--tag-product); color: var(--tag-product-text); }
+
+  .project-desc {
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    padding-left: 2rem;
+    font-weight: 300;
+  }
+
+  .project-stack {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    padding-left: 2rem;
+    margin-top: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* PHILOSOPHY */
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .philosophy-item {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.25rem;
+  }
+
+  .philosophy-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .philosophy-item p {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--warm-line);
+    padding: 2.5rem 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ABOUT BLOCK */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-main p {
+    font-size: 0.97rem;
+    color: var(--ink-mid);
+    font-weight: 300;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  .about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-sidebar-item {
+    padding: 1.25rem;
+    background: var(--cream-2);
+    border-radius: 4px;
+  }
+
+  .about-sidebar-item h4 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .about-sidebar-item p {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 760px) {
+    nav { padding: 0 1rem; }
+    .hero { padding: 110px 1.25rem 70px; }
+    section { padding: 60px 1.25rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .project-card { padding: 1.5rem 1.25rem; }
+    .project-desc { padding-left: 0; }
+    .project-stack { padding-left: 0; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* Scroll animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#">Amy Mead</a>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="this.classList.toggle('open'); document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#projects" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Projects</a></li>
+    <li><a href="#thinking" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">How I think</a></li>
+    <li><a href="#about" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">About</a></li>
+    <li><a href="https://www.linkedin.com/in/amyann-mead/" target="_blank">LinkedIn ↗</a></li>
+    <li><a href="#about" style="color: var(--accent); font-weight: 500;" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Let's connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Fractional Head of Delivery & Operations · Digital Product & Programme · AI</p>
+  <h1>Building things.<br><em>Optimising everything.</em></h1>
+  <p class="hero-body">
+    I'm Amy — a senior digital delivery and product leader with 10+ years across heritage institutions, high-growth businesses, and international non-profits. This isn't a CV. It's a record of the things I build and automate in my own time, because I find it genuinely interesting to make processes work better and keep up with where AI is going.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <span class="hero-stat-num">11</span>
+      <span class="hero-stat-label">Projects</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">5</span>
+      <span class="hero-stat-label">Automations built</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">10+</span>
+      <span class="hero-stat-label">Years in digital</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-label">Projects</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">01</span>
+        <span class="project-title">Daily Brief Skill</span>
+        <span class="tag tag-automation">Automation</span>
+      </div>
+      <p class="project-desc">A reusable AI workflow that pulls Google Calendar and Gmail each morning and delivers a structured briefing — events for today and tomorrow, emails grouped by urgency and type. Installed as a skill file that triggers from a single phrase.</p>
+      <p class="project-stack">Claude AI · Google Calendar API · Gmail API · Skill architecture</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">02</span>
+        <span class="project-title">Plan My Week — Automated Household System</span>
+        <span class="tag tag-automation">Automation</span>
+      </div>
+      <p class="project-desc">A weekly planning system that generates a rotating dinner menu, builds a child's lunchbox plan, produces split shopping lists across two suppliers, checks the calendar for conflicts, and flags birthdays. Iteratively refined over multiple live sessions from rough concept to polished tool.</p>
+      <p class="project-stack">Claude AI · Google Calendar API · Skill file architecture · Prompt engineering</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">03</span>
+        <span class="project-title">Programme Inbox Knowledge Base & Workflow Assistant</span>
+        <span class="tag tag-build">AI Build</span>
+      </div>
+      <p class="project-desc">A Claude Code project for managing a programme inbox — built as a reference library of email templates, policy documents, and response guides covering eligibility, pastoral queries, expenses, and deferrals. The workflow: paste an incoming email in, get a drafted response back, paste it into the inbox and send. No trainee personal data is stored or processed in the system. The interesting part is the architecture — how you structure a knowledge base so an AI can reason consistently across edge cases without needing to be retrained.</p>
+      <p class="project-stack">Claude Code · Markdown · CSV · PDF · .claude/settings.json config</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">04</span>
+        <span class="project-title">TEFL Curriculum Reference System</span>
+        <span class="tag tag-build">AI Build</span>
+      </div>
+      <p class="project-desc">A 27-file structured reference library covering the full TEFL curriculum — grammar, phonology, methodology, lesson planning, error correction. Paired with PDFs, phoneme charts, and IPA visuals. Built as a queryable knowledge base for exam prep and lesson planning.</p>
+      <p class="project-stack">Claude Code · Markdown · PDF · PNG · Knowledge base architecture</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">05</span>
+        <span class="project-title">Cross-Platform Gift Registry — Product Brief</span>
+        <span class="tag tag-product">Product</span>
+      </div>
+      <p class="project-desc">Full product brief for an original app concept: a universal wishlist that accepts links from any platform (TikTok, Instagram, Shopify, any URL), with purchase coordination to prevent duplicate gifting. Includes competitive analysis against Amazon, Pinterest, Zola, and Elfster, and a 10-user research plan.</p>
+      <p class="project-stack">Product strategy · Competitive analysis · User research design</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">06</span>
+        <span class="project-title">"Even When" — Illustrated Picture Book</span>
+        <span class="tag tag-build">AI Build</span>
+      </div>
+      <p class="project-desc">An original children's picture book written, illustrated, and rendered as a production-ready PDF using Python and ReportLab. 16 spreads, Bali setting, characters based on real people. Explored page-turn structure, emotional arc, and read-aloud rhythm alongside the generation process.</p>
+      <p class="project-stack">Python · ReportLab · PDF generation · Narrative structure</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">07</span>
+        <span class="project-title">Google Calendar Automation System</span>
+        <span class="tag tag-automation">Automation</span>
+      </div>
+      <p class="project-desc">A timezone-aware household calendar system connecting meal planning, household staff scheduling, children's activities, and shopping lists. Identified and resolved a UTC+8 offset bug, established consistent event creation patterns, and encoded all learnings into persistent memory so the system improves over time.</p>
+      <p class="project-stack">Google Calendar API · Timezone debugging · Memory engineering</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">08</span>
+        <span class="project-title">Grocery Price Comparison Tool</span>
+        <span class="tag tag-automation">Automation</span>
+      </div>
+      <p class="project-desc">Live price scraping across two organic grocery suppliers in Bali, mapped against a regular weekly shopping list, with per-item cost-per-100g comparison and a practical split-order recommendation. Built ad hoc to solve a real household decision.</p>
+      <p class="project-stack">Web scraping · Data comparison · Python</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">09</span>
+        <span class="project-title">Khaya Marlow — Brand Build & Content System</span>
+        <span class="tag tag-content">Content</span>
+      </div>
+      <p class="project-desc">Running both sides of this simultaneously: building the Shopify store end-to-end (theme configuration, app setup, payment portal, product catalogue, integrations) and developing an ongoing Instagram and TikTok content workflow. Iterative caption development with feedback loops that progressively refine brand voice — less choppy, more organic. The Shopify build mirrors the kind of platform delivery work in my professional background, just at boutique scale.</p>
+      <p class="project-stack">Brand voice · Social media · Iterative prompting</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">10</span>
+        <span class="project-title">Personal Field Guide — How I Work Best</span>
+        <span class="tag tag-design">Design</span>
+      </div>
+      <p class="project-desc">A self-knowledge document covering optimal working conditions, green and red flags, and overwhelm responses — built through an AI-led elicitation process and formatted for visual design use. More interesting as a workflow pattern than as an output.</p>
+      <p class="project-stack">Structured elicitation · Personal systems · Design-ready output</p>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-top">
+        <span class="project-num">11</span>
+        <span class="project-title">AI Screenshot Sorter — iOS Automation</span>
+        <span class="tag tag-automation">Automation</span>
+      </div>
+      <p class="project-desc">A daily 9am iOS Shortcut that automatically categorises screenshots into labelled Photos albums using Apple Intelligence. Built and debugged end-to-end — worked through a missing Save step, an Unknown Album error caused by a trailing space in an album name, and the logic for routing images into the right category. The interesting part isn't the shortcut itself, it's the debugging process: identifying why an automation fails silently and fixing it systematically without a traditional error log.</p>
+      <p class="project-stack">iOS Shortcuts · Apple Intelligence · Automation debugging · Case study documentation</p>
+      <div style="display: flex; gap: 1rem; margin-top: 1.25rem; flex-wrap: wrap;">
+        <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-flow.PNG" alt="iOS Shortcut flow" style="width: 160px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); border: 1px solid var(--warm-line);">
+        <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-detail.PNG" alt="iOS Shortcut detail" style="width: 160px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); border: 1px solid var(--warm-line);">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- HOW I THINK -->
+<section id="thinking">
+  <div class="section-header">
+    <span class="section-label">How I think</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="philosophy-grid">
+    <div class="philosophy-item fade-in">
+      <h3>Processes before tools</h3>
+      <p>I build the workflow first, then find the right tool for it. Most of these projects started as a problem I kept running into — not as an excuse to try something new.</p>
+    </div>
+    <div class="philosophy-item fade-in">
+      <h3>Iterate in public</h3>
+      <p>None of these were built in one session. The plan-my-week skill has been corrected, extended, and debugged across a dozen conversations. That's the real work.</p>
+    </div>
+    <div class="philosophy-item fade-in">
+      <h3>AI as infrastructure</h3>
+      <p>I'm interested in AI as operational infrastructure — not a chatbot to ask questions, but a system you configure to do consistent, repeatable work on your behalf.</p>
+    </div>
+    <div class="philosophy-item fade-in">
+      <h3>Content is structure</h3>
+      <p>Two of these projects (the inbox system and the TEFL reference library) are built entirely from documents — no code. Good knowledge architecture is as valuable as good code architecture.</p>
+    </div>
+    <div class="philosophy-item fade-in">
+      <h3>Small problems are real problems</h3>
+      <p>A grocery price comparison and a lunchbox planner aren't glamorous. But building them fast and well, with the right tradeoffs, is exactly what good product thinking looks like at scale.</p>
+    </div>
+    <div class="philosophy-item fade-in">
+      <h3>Learning by doing</h3>
+      <p>I'm also studying TEFL — and built my study system in the same environment I use for everything else. Learning about a domain and building tools for that domain are the same activity for me.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-label">About</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-main">
+      <p>I'm a senior digital delivery and product leader with 10+ years across heritage institutions (Historic Royal Palaces), high-growth businesses (Cult Wines), tech education non-profits (CodeYourFuture), and my own brand. I've led programme operations across 5+ regions, shipped visitor-facing platforms, built internal tooling, and redesigned how organisations deliver at scale.</p>
+      <p>These days I operate fractionally from Bali — bringing senior delivery experience to organisations that need it without a full-time headcount. I work well with distributed teams, am well-suited to Australia and UAE-based organisations, and have full availability across UK business hours where needed.</p>
+      <p>The projects on this page are what I build in the margins. I'm not a developer — I'm someone who understands systems, thinks in processes, and has learned to use AI as operational infrastructure rather than a shortcut. That combination, I think, is increasingly useful.</p>
+      <div style="margin-top: 1.5rem; padding: 1.25rem; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 3px;">
+        <p style="font-size: 0.88rem; color: var(--ink-mid); margin-bottom: 0.5rem; font-weight: 400;">Available for remote fractional, part-time, or contract engagements — 20–30 hrs/week.</p>
+        <a href="https://www.linkedin.com/in/amyann-mead/" target="_blank" style="font-size: 0.85rem; color: var(--accent); text-decoration: none; font-weight: 500;">Let's connect on LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <div class="about-sidebar">
+      <div class="about-sidebar-item">
+        <h4>Background</h4>
+        <p>BA Politics & English, Rhodes University · 10+ years digital delivery, product & programme ops</p>
+      </div>
+      <div class="about-sidebar-item">
+        <h4>Currently</h4>
+        <p>Fractional Head of Delivery & Ops · Khaya Marlow (founder) · TEFL Level 5 Diploma</p>
+      </div>
+      <div class="about-sidebar-item">
+        <h4>Based</h4>
+        <p>Sanur, Bali — UTC+8. Well-suited to AU and UAE-based teams. UK hours crossover available.</p>
+      </div>
+      <div class="about-sidebar-item">
+        <h4>Contact</h4>
+        <p>
+          <a href="mailto:amz.mead@gmail.com" style="color: var(--accent); text-decoration: none; display: block; margin-bottom: 0.3rem;">amz.mead@gmail.com ↗</a>
+          <a href="https://www.linkedin.com/in/amyann-mead/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn ↗</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Amy Mead</span>
+  <ul class="footer-links">
+    <li><a href="https://www.linkedin.com/in/amyann-mead/">LinkedIn</a></li>
+    <li><a href="#">↑ Back to top</a></li>
+  </ul>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
