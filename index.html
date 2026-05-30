@@ -140,7 +140,7 @@
   /* HERO */
   .hero {
     padding: 140px 2rem 100px;
-    max-width: 860px;
+    max-width: 920px;
     margin: 0 auto;
   }
 
@@ -207,13 +207,13 @@
   .divider {
     border: none;
     border-top: 1px solid var(--warm-line);
-    max-width: 860px;
+    max-width: 920px;
     margin: 0 auto;
   }
 
   /* SECTION */
   section {
-    max-width: 860px;
+    max-width: 920px;
     margin: 0 auto;
     padding: 80px 2rem;
   }
@@ -347,7 +347,7 @@
   footer {
     border-top: 1px solid var(--warm-line);
     padding: 2.5rem 2rem;
-    max-width: 860px;
+    max-width: 920px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -618,18 +618,97 @@
   .gallery-img:hover { opacity: 0.85; transform: scale(1.02); }
 
 
-  /* GALLERY SCROLL */
-  .gallery-wrap {
-    display: flex !important;
-    flex-wrap: nowrap !important;
+  /* FEATURED IMAGE + GALLERY */
+  .project-media {
+    margin-top: 1.25rem;
+  }
+
+  .featured-img-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid var(--warm-line);
+    background: var(--cream-2);
+    max-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in;
+  }
+
+  .featured-img-wrap img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    transition: opacity 0.2s;
+  }
+
+  .featured-img-wrap:hover img { opacity: 0.92; }
+
+  .see-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s;
+  }
+  .see-more-btn:hover { opacity: 0.7; }
+  .see-more-btn .arrow { transition: transform 0.25s; display: inline-block; }
+  .see-more-btn.open .arrow { transform: rotate(90deg); }
+
+  .thumbnail-strip {
+    display: none;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 0.5rem;
-    gap: 0.75rem;
+    margin-top: 0.6rem;
+    padding-bottom: 0.25rem;
   }
-  .gallery-wrap::-webkit-scrollbar { display: none; }
-  .gallery-wrap img { flex-shrink: 0 !important; }
+  .thumbnail-strip::-webkit-scrollbar { display: none; }
+  .thumbnail-strip.open { display: flex; }
+
+  .thumb {
+    flex-shrink: 0;
+    width: 90px;
+    height: 70px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 4px;
+    border: 1px solid var(--warm-line);
+    cursor: zoom-in;
+    transition: opacity 0.2s, border-color 0.2s;
+  }
+  .thumb:hover { opacity: 0.85; border-color: var(--accent); }
+
+  .img-placeholder {
+    width: 100%;
+    height: 140px;
+    background: var(--cream-2);
+    border: 1.5px dashed var(--warm-line);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+  }
+
+  /* GALLERY LIGHTBOX */
+  .gallery-img { cursor: zoom-in; }
 
   /* Scroll animation */
   .fade-in {
@@ -711,12 +790,18 @@
       </div>
       <p class="project-desc">A weekly planning system that generates a rotating dinner menu, builds a child's lunchbox plan, produces split shopping lists across two suppliers, checks the calendar for conflicts, and flags birthdays. Iteratively refined over multiple live sessions from rough concept to polished tool.</p>
       <p class="project-stack">Claude AI · Google Calendar API · Skill file architecture · Prompt engineering</p>
-      <div class="gallery-wrap" style="display: flex; gap: 0.75rem; margin-top: 1.25rem; flex-wrap: wrap;">
-        <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output.png" alt="Plan my week output" class="gallery-img" style="width: 280px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); border: 1px solid var(--warm-line);">
-        <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output2.png" alt="Plan my week output 2" class="gallery-img" style="width: 280px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); border: 1px solid var(--warm-line);">
-        <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-shopping.png" alt="Shopping list" class="gallery-img" style="width: 160px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); border: 1px solid var(--warm-line);">
-        <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-dinner.png" alt="Dinner calendar event" class="gallery-img" style="width: 160px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); border: 1px solid var(--warm-line);">
-        <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-lunchbox.png" alt="Lunchbox calendar event" class="gallery-img" style="width: 160px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); border: 1px solid var(--warm-line);">
+      <div class="project-media gallery-group">
+        <div class="featured-img-wrap gallery-img" data-src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output.png">
+          <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output.png" alt="Plan my week output">
+        </div>
+        <button class="see-more-btn" onclick="toggleStrip(this)">See screenshots <span class="arrow">›</span></button>
+        <div class="thumbnail-strip">
+          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output.png" alt="Plan my week output">
+          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output2.png" alt="Plan my week output 2">
+          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-shopping.png" alt="Shopping list">
+          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-dinner.png" alt="Dinner calendar event">
+          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-lunchbox.png" alt="Lunchbox calendar event">
+        </div>
       </div>
     </div>
 
@@ -758,6 +843,9 @@
       </div>
       <p class="project-desc">An original children's picture book written, illustrated, and rendered as a production-ready PDF using Python and ReportLab. 16 spreads, Bali setting, characters based on real people. Explored page-turn structure, emotional arc, and read-aloud rhythm alongside the generation process.</p>
       <p class="project-stack">Python · ReportLab · PDF generation · Narrative structure</p>
+      <div class="project-media">
+        <div class="img-placeholder">Book spread coming soon</div>
+      </div>
     </div>
 
     <div class="project-card fade-in">
@@ -808,9 +896,15 @@
       </div>
       <p class="project-desc">A daily 9am iOS Shortcut that automatically categorises screenshots into labelled Photos albums using Apple Intelligence. Built and debugged end-to-end — worked through a missing Save step, an Unknown Album error caused by a trailing space in an album name, and the logic for routing images into the right category. The interesting part isn't the shortcut itself, it's the debugging process: identifying why an automation fails silently and fixing it systematically without a traditional error log.</p>
       <p class="project-stack">iOS Shortcuts · Apple Intelligence · Automation debugging · Case study documentation</p>
-      <div class="gallery-wrap" style="display: flex; gap: 1rem; margin-top: 1.25rem; flex-wrap: wrap;">
-        <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-flow.PNG" alt="iOS Shortcut flow" class="gallery-img" style="width: 160px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); border: 1px solid var(--warm-line);">
-        <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-detail.PNG" alt="iOS Shortcut detail" class="gallery-img" style="width: 160px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); border: 1px solid var(--warm-line);">
+      <div class="project-media gallery-group">
+        <div class="featured-img-wrap gallery-img" data-src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-flow.PNG">
+          <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-flow.PNG" alt="iOS Shortcut flow">
+        </div>
+        <button class="see-more-btn" onclick="toggleStrip(this)">See screenshots <span class="arrow">›</span></button>
+        <div class="thumbnail-strip">
+          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-flow.PNG" alt="iOS Shortcut flow">
+          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-detail.PNG" alt="iOS Shortcut detail">
+        </div>
       </div>
     </div>
 
@@ -997,61 +1091,74 @@ document.addEventListener('keydown', e => {
 </div>
 
 <script>
+// Toggle strip
+function toggleStrip(btn) {
+  const strip = btn.nextElementSibling;
+  strip.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.querySelector('.arrow').textContent = btn.classList.contains('open') ? '›' : '›';
+}
+
 // Lightbox
 (function() {
-let currentGallery = [];
-let currentIndex = 0;
+  let gallery = [];
+  let idx = 0;
 
-function openLightbox(imgs, index) {
-  currentGallery = imgs;
-  currentIndex = index;
-  showLightboxImage();
-  document.getElementById('lightbox').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+  const overlay = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const counter = document.getElementById('lightbox-counter');
+  const prev = document.getElementById('lightbox-prev');
+  const next = document.getElementById('lightbox-next');
 
-function showLightboxImage() {
-  document.getElementById('lightbox-img').src = currentGallery[currentIndex].src;
-  document.getElementById('lightbox-img').alt = currentGallery[currentIndex].alt;
-  document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + currentGallery.length;
-  document.getElementById('lightbox-prev').style.display = currentGallery.length > 1 ? 'flex' : 'none';
-  document.getElementById('lightbox-next').style.display = currentGallery.length > 1 ? 'flex' : 'none';
-}
+  function show() {
+    img.src = gallery[idx];
+    counter.textContent = (idx + 1) + ' / ' + gallery.length;
+    prev.style.display = gallery.length > 1 ? 'flex' : 'none';
+    next.style.display = gallery.length > 1 ? 'flex' : 'none';
+  }
 
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-  document.body.style.overflow = '';
-}
+  function open(imgs, i) {
+    gallery = imgs; idx = i;
+    show();
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-document.getElementById('lightbox').addEventListener('click', function(e) {
-  if (e.target === this) closeLightbox();
-});
-document.getElementById('lightbox-prev').addEventListener('click', function(e) {
-  e.stopPropagation();
-  currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
-  showLightboxImage();
-});
-document.getElementById('lightbox-next').addEventListener('click', function(e) {
-  e.stopPropagation();
-  currentIndex = (currentIndex + 1) % currentGallery.length;
-  showLightboxImage();
-});
-document.addEventListener('keydown', function(e) {
-  if (!document.getElementById('lightbox').classList.contains('active')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length; showLightboxImage(); }
-  if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % currentGallery.length; showLightboxImage(); }
-});
+  function close() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 
-// Attach click handlers to all gallery images
-document.querySelectorAll('.gallery-img').forEach(function(img) {
-  img.addEventListener('click', function() {
-    const gallery = Array.from(this.closest('.gallery-wrap').querySelectorAll('.gallery-img'));
-    const index = gallery.indexOf(this);
-    openLightbox(gallery, index);
+  document.getElementById('lightbox-close').onclick = close;
+  overlay.onclick = function(e) { if (e.target === this) close(); };
+  prev.onclick = function(e) { e.stopPropagation(); idx = (idx - 1 + gallery.length) % gallery.length; show(); };
+  next.onclick = function(e) { e.stopPropagation(); idx = (idx + 1) % gallery.length; show(); };
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') { idx = (idx - 1 + gallery.length) % gallery.length; show(); }
+    if (e.key === 'ArrowRight') { idx = (idx + 1) % gallery.length; show(); }
   });
-});
+
+  // Featured image click — opens lightbox with full group
+  document.querySelectorAll('.featured-img-wrap.gallery-img').forEach(function(wrap) {
+    wrap.onclick = function() {
+      const group = this.closest('.gallery-group');
+      const thumbs = Array.from(group.querySelectorAll('.thumb'));
+      const srcs = thumbs.length ? thumbs.map(t => t.src) : [this.querySelector('img').src];
+      open(srcs, 0);
+    };
+  });
+
+  // Thumbnail click — opens at that index
+  document.querySelectorAll('.thumb.gallery-img').forEach(function(thumb) {
+    thumb.onclick = function() {
+      const strip = this.closest('.thumbnail-strip');
+      const thumbs = Array.from(strip.querySelectorAll('.thumb'));
+      const srcs = thumbs.map(t => t.src);
+      open(srcs, thumbs.indexOf(this));
+    };
+  });
 })();
 </script>
 
