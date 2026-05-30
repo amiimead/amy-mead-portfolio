@@ -1,1165 +1,456 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amy Mead — How I Think</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amy Mead</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --ink: #1a1714;
-    --ink-mid: #4a4540;
-    --ink-light: #8a8278;
-    --cream: #faf7f2;
-    --cream-2: #f2ede4;
-    --warm-line: #ddd5c8;
-    --accent: #b5551a;
-    --accent-soft: #f2e8df;
-    --tag-auto: #d4e8d8;
-    --tag-auto-text: #2d5c35;
-    --tag-build: #dde3f0;
-    --tag-build-text: #2a3d72;
-    --tag-content: #f0dde8;
-    --tag-content-text: #6b2a4a;
-    --tag-design: #f0ead4;
-    --tag-design-text: #5c4a10;
-    --tag-product: #e8ddf0;
-    --tag-product-text: #4a2a6b;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: var(--cream);
-    border-bottom: 1px solid var(--warm-line);
-    padding: 0 2rem;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 0.82rem;
-    font-weight: 400;
-    color: var(--ink-mid);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
-
-  /* HAMBURGER */
-  .nav-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    cursor: pointer;
-    padding: 6px;
-    background: none;
-    border: none;
-    z-index: 200;
-  }
-
-  .nav-toggle span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: var(--ink);
-    transition: all 0.25s;
-    transform-origin: center;
-  }
-
-  .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-  @media (max-width: 760px) {
-    .nav-toggle { display: flex; }
-
-    .nav-links {
-      display: none;
-      position: fixed;
-      top: 56px; left: 0; right: 0;
-      background: var(--cream);
-      border-bottom: 1px solid var(--warm-line);
-      flex-direction: column;
-      gap: 0;
-      padding: 0;
-      z-index: 150;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-
-    .nav-links.open { display: flex; }
-
-    .nav-links li { border-bottom: 1px solid var(--warm-line); }
-
-    .nav-links a {
-      display: block;
-      padding: 1rem 1.5rem;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-    }
-  }
-
-  /* HERO */
-  .hero {
-    padding: 140px 2rem 100px;
-    max-width: 920px;
-    margin: 0 auto;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 500;
-    line-height: 1.1;
-    color: var(--ink);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-body {
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--ink-mid);
-    max-width: 560px;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-meta {
-    display: flex;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-
-  .hero-stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--ink);
-    line-height: 1;
-  }
-
-  .hero-stat-label {
-    font-size: 0.78rem;
-    color: var(--ink-light);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  /* DIVIDER */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--warm-line);
-    max-width: 920px;
-    margin: 0 auto;
-  }
-
-  /* SECTION */
-  section {
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 80px 2rem;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 3rem;
-  }
-
-  .section-label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-  }
-
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--warm-line);
-  }
-
-  /* PROJECT CARDS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1px;
-    border: 1px solid var(--warm-line);
-    background: var(--warm-line);
-  }
-
-  .project-card {
-    background: var(--cream);
-    padding: 2rem 2.5rem;
-    transition: background 0.2s;
-    position: relative;
-  }
-
-  .project-card:hover {
-    background: var(--cream-2);
-  }
-
-  .project-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .project-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.9rem;
-    color: var(--ink-light);
-    font-style: italic;
-    min-width: 2rem;
-  }
-
-  .project-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.35rem;
-    font-weight: 500;
-    color: var(--ink);
-    flex: 1;
-    line-height: 1.3;
-  }
-
-  .tag {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 2px;
-    white-space: nowrap;
-  }
-
-  .tag-automation { background: var(--tag-auto); color: var(--tag-auto-text); }
-  .tag-build { background: var(--tag-build); color: var(--tag-build-text); }
-  .tag-content { background: var(--tag-content); color: var(--tag-content-text); }
-  .tag-design { background: var(--tag-design); color: var(--tag-design-text); }
-  .tag-product { background: var(--tag-product); color: var(--tag-product-text); }
-
-  .project-desc {
-    font-size: 0.92rem;
-    color: var(--ink-mid);
-    line-height: 1.7;
-    padding-left: 2rem;
-    font-weight: 300;
-  }
-
-  .project-stack {
-    font-size: 0.78rem;
-    color: var(--ink-light);
-    padding-left: 2rem;
-    margin-top: 0.75rem;
-    letter-spacing: 0.02em;
-  }
-
-  /* PHILOSOPHY */
-  .philosophy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2rem;
-  }
-
-  .philosophy-item {
-    border-left: 2px solid var(--accent);
-    padding-left: 1.25rem;
-  }
-
-  .philosophy-item h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 0.5rem;
-  }
-
-  .philosophy-item p {
-    font-size: 0.88rem;
-    color: var(--ink-mid);
-    font-weight: 300;
-    line-height: 1.7;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--warm-line);
-    padding: 2.5rem 2rem;
-    max-width: 920px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    color: var(--ink);
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-size: 0.82rem;
-    color: var(--ink-light);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--accent); }
-
-  /* ABOUT BLOCK */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .about-main p {
-    font-size: 0.97rem;
-    color: var(--ink-mid);
-    font-weight: 300;
-    line-height: 1.85;
-    margin-bottom: 1rem;
-  }
-
-  .about-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .about-sidebar-item {
-    padding: 1.25rem;
-    background: var(--cream-2);
-    border-radius: 4px;
-  }
-
-  .about-sidebar-item h4 {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    margin-bottom: 0.5rem;
-  }
-
-  .about-sidebar-item p {
-    font-size: 0.88rem;
-    color: var(--ink-mid);
-    font-weight: 300;
-    line-height: 1.6;
-  }
-
-  @media (max-width: 760px) {
-    nav { padding: 0 1rem; }
-    .hero { padding: 110px 1.25rem 70px; }
-    section { padding: 60px 1.25rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .project-card { padding: 1.5rem 1.25rem; }
-    .project-desc { padding-left: 0; }
-    .project-stack { padding-left: 0; }
-    footer { flex-direction: column; align-items: flex-start; }
-  }
-
-
-  /* LIGHTBOX */
-  .lightbox-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(20,17,14,0.92);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-  .lightbox-overlay.active { display: flex; }
-
-  .lightbox-inner {
-    position: relative;
-    max-width: 90vw;
-    max-height: 90vh;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .lightbox-img {
-    max-width: 80vw;
-    max-height: 85vh;
-    border-radius: 8px;
-    object-fit: contain;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-  }
-
-  .lightbox-btn {
-    background: rgba(255,255,255,0.12);
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: background 0.2s;
-  }
-  .lightbox-btn:hover { background: rgba(255,255,255,0.25); }
-
-  .lightbox-close {
-    position: fixed;
-    top: 1.25rem;
-    right: 1.25rem;
-    background: rgba(255,255,255,0.12);
-    border: none;
-    color: #fff;
-    font-size: 1.25rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-  }
-  .lightbox-close:hover { background: rgba(255,255,255,0.25); }
-
-  .lightbox-counter {
-    position: fixed;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255,255,255,0.6);
-    font-size: 0.82rem;
-    font-family: 'DM Sans', sans-serif;
-    letter-spacing: 0.06em;
-  }
-
-  .gallery-img {
-    cursor: zoom-in;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .gallery-img:hover { opacity: 0.85; transform: scale(1.02); }
-
-
-  /* LIGHTBOX */
-  .lightbox-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(20,18,16,0.92);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-  .lightbox-overlay.active { display: flex; }
-
-  .lightbox-inner {
-    position: relative;
-    max-width: 90vw;
-    max-height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .lightbox-img {
-    max-width: 85vw;
-    max-height: 85vh;
-    border-radius: 8px;
-    object-fit: contain;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-  }
-
-  .lightbox-inner {
-    position: relative;
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: -2.25rem;
-    right: 0;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: #fff;
-    font-size: 1.25rem;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    transition: background 0.2s;
-    z-index: 10;
-  }
-  .lightbox-close:hover { background: rgba(255,255,255,0.3); }
-
-  .lightbox-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: #fff;
-    font-size: 1.4rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    z-index: 10;
-  }
-  .lightbox-arrow:hover { background: rgba(255,255,255,0.35); }
-  .lightbox-prev { left: -52px; }
-  .lightbox-next { right: -52px; }
-
-  @media (max-width: 600px) {
-    .lightbox-prev { left: -46px; }
-    .lightbox-next { right: -46px; }
-  }
-
-  .lightbox-counter {
-    position: absolute;
-    bottom: -2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255,255,255,0.6);
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-    font-family: 'DM Sans', sans-serif;
-    white-space: nowrap;
-  }
-
-  .gallery-img {
-    cursor: zoom-in;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .gallery-img:hover { opacity: 0.85; transform: scale(1.02); }
-
-
-  /* FEATURED IMAGE + GALLERY */
-  .project-media {
-    margin-top: 1.25rem;
-  }
-
-  .featured-img-wrap {
-    position: relative;
-    overflow: hidden;
-    border-radius: 6px;
-    border: 1px solid var(--warm-line);
-    background: var(--cream-2);
-    max-height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: zoom-in;
-  }
-
-  .featured-img-wrap img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    object-position: top;
-    display: block;
-    transition: opacity 0.2s;
-  }
-
-  .featured-img-wrap:hover img { opacity: 0.92; }
-
-  .see-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    margin-top: 0.6rem;
-    font-size: 0.78rem;
-    color: var(--accent);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: opacity 0.2s;
-  }
-  .see-more-btn:hover { opacity: 0.7; }
-  .see-more-btn .arrow { transition: transform 0.25s; display: inline-block; }
-  .see-more-btn.open .arrow { transform: rotate(90deg); }
-
-  .thumbnail-strip {
-    display: none;
-    flex-wrap: nowrap;
-    gap: 0.5rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    margin-top: 0.6rem;
-    padding-bottom: 0.25rem;
-  }
-  .thumbnail-strip::-webkit-scrollbar { display: none; }
-  .thumbnail-strip.open { display: flex; }
-
-  .thumb {
-    flex-shrink: 0;
-    width: 90px;
-    height: 70px;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 4px;
-    border: 1px solid var(--warm-line);
-    cursor: zoom-in;
-    transition: opacity 0.2s, border-color 0.2s;
-  }
-  .thumb:hover { opacity: 0.85; border-color: var(--accent); }
-
-  .img-placeholder {
-    width: 100%;
-    height: 140px;
-    background: var(--cream-2);
-    border: 1.5px dashed var(--warm-line);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.78rem;
-    color: var(--ink-light);
-    letter-spacing: 0.04em;
-  }
-
-  /* GALLERY LIGHTBOX */
-  .gallery-img { cursor: zoom-in; }
-
-  /* Scroll animation */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sage: #C8D8C0; --sage-light: #E8F0E4; --sage-dark: #7A9A72;
+  --peach: #F0D4C4; --peach-light: #FAF0EA; --peach-dark: #C4896A;
+  --sky: #C4D8E8; --sky-light: #EAF2F8;
+  --lavender: #D4CCEC; --lavender-light: #F0EEFA;
+  --cream: #FAF8F4; --stone: #3A3830; --stone-mid: #6A665E; --stone-light: #9A968E;
+  --white: #FFFFFF; --font: 'DM Sans', sans-serif; --mono: 'DM Mono', monospace;
+  --radius: 14px; --radius-sm: 8px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--cream); color: var(--stone); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,248,244,0.88); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(58,56,48,0.08);
+  padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 60px;
+}
+.nav-logo { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--stone); }
+.nav-logo span { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--sage-dark); margin-left: 5px; vertical-align: middle; position: relative; top: -1px; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; font-size: 14px; color: var(--stone-mid); }
+.nav-links a:hover { color: var(--stone); }
+.nav-cta { background: var(--stone); color: var(--cream) !important; padding: 8px 18px; border-radius: 40px; font-size: 13px; font-weight: 500; transition: opacity 0.15s; }
+.nav-cta:hover { opacity: 0.8; }
+
+/* HERO */
+.hero { padding: 100px 40px 40px; max-width: 860px; margin: 0 auto; }
+.hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone-light); margin-bottom: 28px; font-family: var(--mono); }
+.hero h1 { font-size: clamp(38px, 6vw, 64px); font-weight: 300; line-height: 1.08; letter-spacing: -0.03em; color: var(--stone); margin-bottom: 32px; }
+.hero h1 em { font-style: normal; font-weight: 600; color: var(--sage-dark); }
+.hero-sub { font-size: 17px; color: var(--stone-mid); max-width: 580px; line-height: 1.7; margin-bottom: 40px; }
+.hero-stats { display: flex; gap: 40px; padding-top: 40px; border-top: 1px solid rgba(58,56,48,0.1); padding-bottom: 28px; }
+.hero-stat-num { font-size: 28px; font-weight: 600; color: var(--stone); letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+.hero-stat-label { font-size: 13px; color: var(--stone-light); font-family: var(--mono); }
+
+/* TAGS */
+.tags-strip { padding: 0 40px 60px; max-width: 860px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font-size: 12px; font-family: var(--mono); padding: 6px 14px; border-radius: 40px; border: 1px solid rgba(58,56,48,0.15); color: var(--stone-mid); background: transparent; }
+.tag.sage { background: var(--sage-light); border-color: var(--sage); color: var(--sage-dark); }
+.tag.peach { background: var(--peach-light); border-color: var(--peach); color: var(--peach-dark); }
+.tag.sky { background: var(--sky-light); border-color: var(--sky); color: #4A7A9A; }
+.tag.lavender { background: var(--lavender-light); border-color: var(--lavender); color: #6A5AAA; }
+
+/* SECTIONS */
+section { padding: 80px 40px; max-width: 860px; margin: 0 auto; }
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; font-family: var(--mono); color: var(--stone-light); margin-bottom: 40px; display: flex; align-items: center; gap: 12px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: rgba(58,56,48,0.1); }
+
+/* PROJECTS */
+.projects-grid { display: flex; flex-direction: column; gap: 2px; }
+.project-card { background: var(--white); border-radius: var(--radius); padding: 28px 32px; border: 1px solid rgba(58,56,48,0.07); transition: transform 0.2s; cursor: default; position: relative; overflow: hidden; }
+.project-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: transparent; transition: background 0.2s; }
+.project-card:hover { transform: translateX(4px); }
+.project-card:hover::before { background: var(--sage-dark); }
+.project-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; gap: 16px; }
+.project-num { font-family: var(--mono); font-size: 11px; color: var(--stone-light); min-width: 28px; margin-top: 3px; }
+.project-title { font-size: 16px; font-weight: 500; color: var(--stone); flex: 1; letter-spacing: -0.01em; }
+.project-type { font-size: 11px; font-family: var(--mono); padding: 4px 10px; border-radius: 40px; white-space: nowrap; }
+.type-automation { background: var(--sage-light); color: var(--sage-dark); }
+.type-ai { background: var(--peach-light); color: var(--peach-dark); }
+.type-product { background: var(--sky-light); color: #4A7A9A; }
+.type-content { background: var(--lavender-light); color: #6A5AAA; }
+.type-design { background: #F8EED8; color: #8A6A2A; }
+.project-desc { font-size: 14px; color: var(--stone-mid); margin-left: 28px; line-height: 1.65; margin-bottom: 12px; }
+.project-tech { margin-left: 28px; display: flex; flex-wrap: wrap; gap: 6px; }
+.tech-tag { font-size: 11px; font-family: var(--mono); color: var(--stone-light); background: var(--cream); padding: 3px 8px; border-radius: var(--radius-sm); border: 1px solid rgba(58,56,48,0.1); }
+
+/* PROJECT IMAGES */
+.project-media { margin-left: 28px; margin-top: 16px; }
+.project-hero-img { display: block; width: 100%; max-width: 420px; height: 140px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid rgba(58,56,48,0.08); cursor: pointer; transition: opacity 0.15s; }
+.project-hero-img:hover { opacity: 0.85; }
+.see-screenshots { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 13px; font-family: var(--mono); color: var(--sage-dark); cursor: pointer; background: none; border: none; padding: 0; letter-spacing: 0.02em; }
+.see-screenshots:hover { opacity: 0.7; }
+.see-screenshots .arrow { transition: transform 0.2s; display: inline-block; }
+.see-screenshots.open .arrow { transform: rotate(90deg); }
+.screenshots-drawer { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+.screenshots-drawer.hidden { display: none; }
+.screenshots-drawer img { height: 100px; border-radius: var(--radius-sm); border: 1px solid rgba(58,56,48,0.08); object-fit: cover; cursor: pointer; transition: opacity 0.15s; }
+.screenshots-drawer img:hover { opacity: 0.85; }
+
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.82); z-index: 999; align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 90vh; border-radius: var(--radius); }
+.lightbox-close { position: absolute; top: 20px; right: 28px; color: white; font-size: 32px; cursor: pointer; line-height: 1; }
+
+/* THINKING */
+.thinking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.thinking-card { background: var(--white); border-radius: var(--radius); padding: 28px; border: 1px solid rgba(58,56,48,0.07); }
+.thinking-card:nth-child(1) .thinking-accent { background: var(--sage-light); color: var(--sage-dark); }
+.thinking-card:nth-child(2) .thinking-accent { background: var(--peach-light); color: var(--peach-dark); }
+.thinking-card:nth-child(3) .thinking-accent { background: var(--sky-light); color: #4A7A9A; }
+.thinking-card:nth-child(4) .thinking-accent { background: var(--lavender-light); color: #6A5AAA; }
+.thinking-card:nth-child(5) .thinking-accent { background: #F8EED8; color: #8A6A2A; }
+.thinking-card:nth-child(6) .thinking-accent { background: var(--sage-light); color: var(--sage-dark); }
+.thinking-accent { display: inline-block; font-size: 11px; font-family: var(--mono); padding: 4px 10px; border-radius: 40px; margin-bottom: 14px; }
+.thinking-card h3 { font-size: 15px; font-weight: 500; color: var(--stone); letter-spacing: -0.01em; margin-bottom: 8px; }
+.thinking-card p { font-size: 13px; color: var(--stone-mid); line-height: 1.65; }
+
+/* ABOUT */
+.about-layout { display: grid; grid-template-columns: 1fr 300px; gap: 60px; align-items: start; }
+.about-intro { font-size: 18px; font-weight: 300; line-height: 1.7; color: var(--stone); letter-spacing: -0.01em; margin-bottom: 24px; }
+.about-body { font-size: 15px; color: var(--stone-mid); line-height: 1.75; margin-bottom: 32px; }
+.about-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--stone); color: var(--cream); padding: 12px 24px; border-radius: 40px; font-size: 14px; font-weight: 500; transition: opacity 0.15s; }
+.about-cta:hover { opacity: 0.8; }
+.about-cta svg { width: 14px; height: 14px; }
+.about-sidebar { display: flex; flex-direction: column; gap: 12px; }
+.about-card { background: var(--white); border-radius: var(--radius); padding: 20px 22px; border: 1px solid rgba(58,56,48,0.07); }
+.about-card-label { font-size: 11px; font-family: var(--mono); color: var(--stone-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+.about-card-val { font-size: 13px; color: var(--stone-mid); line-height: 1.55; }
+
+/* FOOTER */
+footer { border-top: 1px solid rgba(58,56,48,0.1); padding: 32px 40px; max-width: 860px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.footer-name { font-size: 14px; font-weight: 500; color: var(--stone); }
+.footer-links { display: flex; gap: 24px; font-size: 13px; color: var(--stone-light); }
+.footer-links a:hover { color: var(--stone); }
+
+/* MOBILE */
+@media (max-width: 680px) {
+  nav { padding: 0 20px; }
+  .nav-links { gap: 16px; }
+  .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+  .hero { padding: 60px 20px 32px; }
+  .tags-strip { padding: 0 20px 40px; }
+  section { padding: 60px 20px; }
+  .about-layout { grid-template-columns: 1fr; gap: 32px; }
+  .thinking-grid { grid-template-columns: 1fr; }
+  footer { padding: 24px 20px; flex-direction: column; gap: 16px; text-align: center; }
+  .hero-stats { gap: 24px; }
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-name" href="#">Amy Mead</a>
-  <button class="nav-toggle" aria-label="Toggle menu" onclick="this.classList.toggle('open'); document.querySelector('.nav-links').classList.toggle('open')">
-    <span></span><span></span><span></span>
-  </button>
+  <a class="nav-logo" href="#">Amy Mead<span></span></a>
   <ul class="nav-links">
-    <li><a href="#projects" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Projects</a></li>
-    <li><a href="#thinking" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">How I think</a></li>
-    <li><a href="#about" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#thinking">How I think</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="https://www.linkedin.com/in/amyann-mead/" target="_blank">LinkedIn ↗</a></li>
-    <li><a href="#about" style="color: var(--accent); font-weight: 500;" onclick="document.querySelector('.nav-links').classList.remove('open'); document.querySelector('.nav-toggle').classList.remove('open')">Let's connect</a></li>
+    <li><a href="#about" class="nav-cta">Let's connect</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <p class="hero-eyebrow">Fractional Head of Delivery & Operations · Digital Product & Programme · AI</p>
-  <h1>Building things.<br><em>Optimising everything.</em></h1>
-  <p class="hero-body">
-    I'm Amy — a senior digital delivery and product leader with 10+ years across heritage institutions, high-growth businesses, and international non-profits. This isn't a CV. It's a record of the things I build and automate in my own time, because I find it genuinely interesting to make processes work better and keep up with where AI is going.
-  </p>
-  <div class="hero-meta">
-    <div class="hero-stat">
-      <span class="hero-stat-num">11</span>
-      <span class="hero-stat-label">Projects</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">5</span>
-      <span class="hero-stat-label">Automations built</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">10+</span>
-      <span class="hero-stat-label">Years in digital</span>
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Fractional Head of Delivery & Operations · Digital Product & Programme · AI</p>
+    <h1>Building things.<br><em>Optimising everything.</em></h1>
+    <p class="hero-sub">I'm Amy — a senior digital delivery and product leader with 10+ years across heritage institutions, high-growth businesses, and international non-profits. This isn't a CV. It's a record of what I build in my own time, because I find it genuinely interesting.</p>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">11</div><div class="hero-stat-label">Projects</div></div>
+      <div><div class="hero-stat-num">5</div><div class="hero-stat-label">Automations built</div></div>
+      <div><div class="hero-stat-num">10+</div><div class="hero-stat-label">Years in digital</div></div>
     </div>
   </div>
-</div>
 
-<hr class="divider">
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-header">
-    <span class="section-label">Projects</span>
-    <div class="section-line"></div>
+  <div class="tags-strip">
+    <span class="tag sage">Digital Product</span>
+    <span class="tag peach">Programme Delivery</span>
+    <span class="tag sky">AI Infrastructure</span>
+    <span class="tag lavender">Operational Systems</span>
+    <span class="tag">Remote · Fractional</span>
+    <span class="tag">Sanur, Bali — UTC+8</span>
   </div>
 
-  <div class="projects-grid">
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
 
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">01</span>
-        <span class="project-title">Daily Brief Skill</span>
-        <span class="tag tag-automation">Automation</span>
-      </div>
-      <p class="project-desc">A reusable AI workflow that pulls Google Calendar and Gmail each morning and delivers a structured briefing — events for today and tomorrow, emails grouped by urgency and type. Installed as a skill file that triggers from a single phrase.</p>
-      <p class="project-stack">Claude AI · Google Calendar API · Gmail API · Skill architecture</p>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">02</span>
-        <span class="project-title">Plan My Week — Automated Household System</span>
-        <span class="tag tag-automation">Automation</span>
-      </div>
-      <p class="project-desc">A weekly planning system that generates a rotating dinner menu, builds a child's lunchbox plan, produces split shopping lists across two suppliers, checks the calendar for conflicts, and flags birthdays. Iteratively refined over multiple live sessions from rough concept to polished tool.</p>
-      <p class="project-stack">Claude AI · Google Calendar API · Skill file architecture · Prompt engineering</p>
-      <div class="project-media gallery-group">
-        <div class="featured-img-wrap gallery-img" data-src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output.png">
-          <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output.png" alt="Plan my week output">
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">01</span>
+          <span class="project-title">Daily Brief Skill Automation</span>
+          <span class="project-type type-automation">Automation</span>
         </div>
-        <button class="see-more-btn" onclick="toggleStrip(this)">See screenshots <span class="arrow">›</span></button>
-        <div class="thumbnail-strip">
-          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output.png" alt="Plan my week output">
-          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output2.png" alt="Plan my week output 2">
-          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-shopping.png" alt="Shopping list">
-          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-dinner.png" alt="Dinner calendar event">
-          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-lunchbox.png" alt="Lunchbox calendar event">
+        <p class="project-desc">A reusable AI workflow that pulls Google Calendar and Gmail each morning and delivers a structured briefing — events for today and tomorrow, emails grouped by urgency and type. Installed as a skill file that triggers from a single phrase.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Claude AI</span><span class="tech-tag">Google Calendar API</span><span class="tech-tag">Gmail API</span><span class="tech-tag">Skill architecture</span>
         </div>
       </div>
-    </div>
 
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">03</span>
-        <span class="project-title">Programme Inbox Knowledge Base & Workflow Assistant</span>
-        <span class="tag tag-build">AI Build</span>
-      </div>
-      <p class="project-desc">A Claude Code project for managing a programme inbox — built as a reference library of email templates, policy documents, and response guides covering eligibility, pastoral queries, expenses, and deferrals. The workflow: paste an incoming email in, get a drafted response back, paste it into the inbox and send. No trainee personal data is stored or processed in the system. The interesting part is the architecture — how you structure a knowledge base so an AI can reason consistently across edge cases without needing to be retrained.</p>
-      <p class="project-stack">Claude Code · Markdown · CSV · PDF · .claude/settings.json config</p>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">04</span>
-        <span class="project-title">TEFL Curriculum Reference System</span>
-        <span class="tag tag-build">AI Build</span>
-      </div>
-      <p class="project-desc">A 27-file structured reference library covering the full TEFL curriculum — grammar, phonology, methodology, lesson planning, error correction. Paired with PDFs, phoneme charts, and IPA visuals. Built as a queryable knowledge base for exam prep and lesson planning.</p>
-      <p class="project-stack">Claude Code · Markdown · PDF · PNG · Knowledge base architecture</p>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">05</span>
-        <span class="project-title">Cross-Platform Gift Registry — Product Brief</span>
-        <span class="tag tag-product">Product</span>
-      </div>
-      <p class="project-desc">Full product brief for an original app concept: a universal wishlist that accepts links from any platform (TikTok, Instagram, Shopify, any URL), with purchase coordination to prevent duplicate gifting. Includes competitive analysis against Amazon, Pinterest, Zola, and Elfster, and a 10-user research plan.</p>
-      <p class="project-stack">Product strategy · Competitive analysis · User research design</p>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">06</span>
-        <span class="project-title">"Even When" — Illustrated Picture Book</span>
-        <span class="tag tag-build">AI Build</span>
-      </div>
-      <p class="project-desc">An original children's picture book written, illustrated, and rendered as a production-ready PDF using Python and ReportLab. 16 spreads, Bali setting, characters based on real people. Explored page-turn structure, emotional arc, and read-aloud rhythm alongside the generation process.</p>
-      <p class="project-stack">Python · ReportLab · PDF generation · Narrative structure</p>
-      <div class="project-media">
-        <div class="img-placeholder">Book spread coming soon</div>
-      </div>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">07</span>
-        <span class="project-title">Google Calendar Automation System</span>
-        <span class="tag tag-automation">Automation</span>
-      </div>
-      <p class="project-desc">A timezone-aware household calendar system connecting meal planning, household staff scheduling, children's activities, and shopping lists. Identified and resolved a UTC+8 offset bug, established consistent event creation patterns, and encoded all learnings into persistent memory so the system improves over time.</p>
-      <p class="project-stack">Google Calendar API · Timezone debugging · Memory engineering</p>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">08</span>
-        <span class="project-title">Grocery Price Comparison Tool</span>
-        <span class="tag tag-automation">Automation</span>
-      </div>
-      <p class="project-desc">Live price scraping across two organic grocery suppliers in Bali, mapped against a regular weekly shopping list, with per-item cost-per-100g comparison and a practical split-order recommendation. Built ad hoc to solve a real household decision.</p>
-      <p class="project-stack">Web scraping · Data comparison · Python</p>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">09</span>
-        <span class="project-title">Khaya Marlow — Brand Build & Content System</span>
-        <span class="tag tag-content">Content</span>
-      </div>
-      <p class="project-desc">Running both sides of this simultaneously: building the Shopify store end-to-end (theme configuration, app setup, payment portal, product catalogue, integrations) and developing an ongoing Instagram and TikTok content workflow. Iterative caption development with feedback loops that progressively refine brand voice — less choppy, more organic. The Shopify build mirrors the kind of platform delivery work in my professional background, just at boutique scale.</p>
-      <p class="project-stack">Brand voice · Social media · Iterative prompting</p>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">10</span>
-        <span class="project-title">Personal Field Guide — How I Work Best</span>
-        <span class="tag tag-design">Design</span>
-      </div>
-      <p class="project-desc">A self-knowledge document covering optimal working conditions, green and red flags, and overwhelm responses — built through an AI-led elicitation process and formatted for visual design use. More interesting as a workflow pattern than as an output.</p>
-      <p class="project-stack">Structured elicitation · Personal systems · Design-ready output</p>
-    </div>
-
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <span class="project-num">11</span>
-        <span class="project-title">AI Screenshot Sorter — iOS Automation</span>
-        <span class="tag tag-automation">Automation</span>
-      </div>
-      <p class="project-desc">A daily 9am iOS Shortcut that automatically categorises screenshots into labelled Photos albums using Apple Intelligence. Built and debugged end-to-end — worked through a missing Save step, an Unknown Album error caused by a trailing space in an album name, and the logic for routing images into the right category. The interesting part isn't the shortcut itself, it's the debugging process: identifying why an automation fails silently and fixing it systematically without a traditional error log.</p>
-      <p class="project-stack">iOS Shortcuts · Apple Intelligence · Automation debugging · Case study documentation</p>
-      <div class="project-media gallery-group">
-        <div class="featured-img-wrap gallery-img" data-src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-flow.PNG">
-          <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-flow.PNG" alt="iOS Shortcut flow">
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">02</span>
+          <span class="project-title">Plan My Week — Automated Household System</span>
+          <span class="project-type type-automation">Automation</span>
         </div>
-        <button class="see-more-btn" onclick="toggleStrip(this)">See screenshots <span class="arrow">›</span></button>
-        <div class="thumbnail-strip">
-          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-flow.PNG" alt="iOS Shortcut flow">
-          <img class="thumb gallery-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-detail.PNG" alt="iOS Shortcut detail">
+        <p class="project-desc">A weekly planning system generating a rotating dinner menu, lunchbox plan, split shopping lists, calendar conflict checks, and birthday flags. Refined across a dozen live sessions from rough concept to polished tool.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Claude AI</span><span class="tech-tag">Google Calendar API</span><span class="tech-tag">Skill file architecture</span><span class="tech-tag">Prompt engineering</span>
+        </div>
+        <div class="project-media">
+          <img class="project-hero-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output.png" alt="Plan my week output" onclick="openLightbox(this)" />
+          <button class="see-screenshots" onclick="toggleScreenshots(this)">
+            See screenshots <span class="arrow">›</span>
+          </button>
+          <div class="screenshots-drawer hidden">
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-output2.png" alt="Plan my week output 2" onclick="openLightbox(this)" />
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-shopping.png" alt="Shopping list" onclick="openLightbox(this)" />
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-dinner.png" alt="Dinner calendar" onclick="openLightbox(this)" />
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/planweek-lunchbox.png" alt="Lunchbox calendar" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
-    </div>
 
-  </div>
-</section>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">03</span>
+          <span class="project-title">Programme Inbox Knowledge Base & Workflow Assistant</span>
+          <span class="project-type type-ai">AI Build</span>
+        </div>
+        <p class="project-desc">A Claude Code project for managing a programme inbox — built as a reference library covering eligibility, pastoral queries, expenses, and deferrals. Paste an email in, get a drafted response back. The interesting part is the knowledge architecture — how you structure a knowledge base so an AI can reason consistently across edge cases without needing to be retrained.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Claude Code</span><span class="tech-tag">Markdown</span><span class="tech-tag">CSV</span><span class="tech-tag">PDF</span><span class="tech-tag">.claude/settings.json config</span>
+        </div>
+      </div>
 
-<hr class="divider">
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">04</span>
+          <span class="project-title">TEFL Curriculum Reference System</span>
+          <span class="project-type type-ai">AI Build</span>
+        </div>
+        <p class="project-desc">A 27-file structured reference library covering the full TEFL curriculum — grammar, phonology, methodology, lesson planning, error correction. Paired with PDFs, phoneme charts, and IPA visuals. Built as a queryable knowledge base for exam prep and lesson planning.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Claude Code</span><span class="tech-tag">Markdown</span><span class="tech-tag">PDF</span><span class="tech-tag">PNG</span><span class="tech-tag">Knowledge base architecture</span>
+        </div>
+      </div>
 
-<!-- HOW I THINK -->
-<section id="thinking">
-  <div class="section-header">
-    <span class="section-label">How I think</span>
-    <div class="section-line"></div>
-  </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">05</span>
+          <span class="project-title">Cross-Platform Gift Registry — Product Brief</span>
+          <span class="project-type type-product">Product</span>
+        </div>
+        <p class="project-desc">Full product brief for an original app concept: a universal wishlist that accepts links from any platform (TikTok, Instagram, Shopify, any URL), with purchase coordination to prevent duplicate gifting. Includes competitive analysis against Amazon, Pinterest, Zola, and Elfster, and a 10-user research plan.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Product strategy</span><span class="tech-tag">Competitive analysis</span><span class="tech-tag">User research design</span>
+        </div>
+      </div>
 
-  <div class="philosophy-grid">
-    <div class="philosophy-item fade-in">
-      <h3>Processes before tools</h3>
-      <p>I build the workflow first, then find the right tool for it. Most of these projects started as a problem I kept running into — not as an excuse to try something new.</p>
-    </div>
-    <div class="philosophy-item fade-in">
-      <h3>Iterate in public</h3>
-      <p>None of these were built in one session. The plan-my-week skill has been corrected, extended, and debugged across a dozen conversations. That's the real work.</p>
-    </div>
-    <div class="philosophy-item fade-in">
-      <h3>AI as infrastructure</h3>
-      <p>I'm interested in AI as operational infrastructure — not a chatbot to ask questions, but a system you configure to do consistent, repeatable work on your behalf.</p>
-    </div>
-    <div class="philosophy-item fade-in">
-      <h3>Content is structure</h3>
-      <p>Two of these projects (the inbox system and the TEFL reference library) are built entirely from documents — no code. Good knowledge architecture is as valuable as good code architecture.</p>
-    </div>
-    <div class="philosophy-item fade-in">
-      <h3>Small problems are real problems</h3>
-      <p>A grocery price comparison and a lunchbox planner aren't glamorous. But building them fast and well, with the right tradeoffs, is exactly what good product thinking looks like at scale.</p>
-    </div>
-    <div class="philosophy-item fade-in">
-      <h3>Learning by doing</h3>
-      <p>I'm also studying TEFL — and built my study system in the same environment I use for everything else. Learning about a domain and building tools for that domain are the same activity for me.</p>
-    </div>
-  </div>
-</section>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">06</span>
+          <span class="project-title">"Even When" — Illustrated Picture Book</span>
+          <span class="project-type type-ai">AI Build</span>
+        </div>
+        <p class="project-desc">An original children's picture book written, illustrated, and rendered as a production-ready PDF using Python and ReportLab. 16 spreads, Bali setting, characters based on real people. Explored page-turn structure, emotional arc, and read-aloud rhythm alongside the generation process.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span><span class="tech-tag">ReportLab</span><span class="tech-tag">PDF generation</span><span class="tech-tag">Narrative structure</span>
+        </div>
+      </div>
 
-<hr class="divider">
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">07</span>
+          <span class="project-title">Google Calendar Automation System</span>
+          <span class="project-type type-automation">Automation</span>
+        </div>
+        <p class="project-desc">A timezone-aware household calendar system connecting meal planning, household staff scheduling, children's activities, and shopping lists. Identified and resolved a UTC+8 offset bug, established consistent event creation patterns, and encoded all learnings into persistent memory so the system improves over time.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Google Calendar API</span><span class="tech-tag">Timezone debugging</span><span class="tech-tag">Memory engineering</span>
+        </div>
+      </div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header">
-    <span class="section-label">About</span>
-    <div class="section-line"></div>
-  </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">08</span>
+          <span class="project-title">Grocery Price Comparison Tool</span>
+          <span class="project-type type-automation">Automation</span>
+        </div>
+        <p class="project-desc">Live price scraping across two organic grocery suppliers in Bali, mapped against a regular weekly shopping list, with per-item cost-per-100g comparison and a practical split-order recommendation. Built ad hoc to solve a real household decision.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Web scraping</span><span class="tech-tag">Data comparison</span><span class="tech-tag">Python</span>
+        </div>
+      </div>
 
-  <div class="about-grid">
-    <div class="about-main">
-      <p>I'm a senior digital delivery and product leader with 10+ years across heritage institutions (Historic Royal Palaces), high-growth businesses (Cult Wines), tech education non-profits (CodeYourFuture), and my own brand. I've led programme operations across 5+ regions, shipped visitor-facing platforms, built internal tooling, and redesigned how organisations deliver at scale.</p>
-      <p>These days I operate fractionally from Bali — bringing senior delivery experience to organisations that need it without a full-time headcount. I work well with distributed teams, am well-suited to Australia and UAE-based organisations, and have full availability across UK business hours where needed.</p>
-      <p>The projects on this page are what I build in the margins. I'm not a developer — I'm someone who understands systems, thinks in processes, and has learned to use AI as operational infrastructure rather than a shortcut. That combination, I think, is increasingly useful.</p>
-      <div style="margin-top: 1.5rem; padding: 1.25rem; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 3px;">
-        <p style="font-size: 0.88rem; color: var(--ink-mid); margin-bottom: 0.5rem; font-weight: 400;">Available for remote fractional, part-time, or contract engagements — 20–30 hrs/week.</p>
-        <a href="https://www.linkedin.com/in/amyann-mead/" target="_blank" style="font-size: 0.85rem; color: var(--accent); text-decoration: none; font-weight: 500;">Let's connect on LinkedIn ↗</a>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">09</span>
+          <span class="project-title">Khaya Marlow — Brand Build & Content System</span>
+          <span class="project-type type-content">Content</span>
+        </div>
+        <p class="project-desc">Running both sides simultaneously: building the Shopify store end-to-end (theme configuration, app setup, payment portal, product catalogue, integrations) and developing an ongoing Instagram and TikTok content workflow. Iterative caption development with feedback loops that progressively refine brand voice — less choppy, more organic.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Brand voice</span><span class="tech-tag">Social media</span><span class="tech-tag">Iterative prompting</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">10</span>
+          <span class="project-title">Personal Field Guide — How I Work Best</span>
+          <span class="project-type type-design">Design</span>
+        </div>
+        <p class="project-desc">A self-knowledge document covering optimal working conditions, green and red flags, and overwhelm responses — built through an AI-led elicitation process and formatted for visual design use. More interesting as a workflow pattern than as an output.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Structured elicitation</span><span class="tech-tag">Personal systems</span><span class="tech-tag">Design-ready output</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-num">11</span>
+          <span class="project-title">AI Screenshot Sorter — iOS Automation</span>
+          <span class="project-type type-automation">Automation</span>
+        </div>
+        <p class="project-desc">A daily 9am iOS Shortcut that automatically categorises screenshots into labelled Photos albums using Apple Intelligence. Built and debugged end-to-end — worked through a missing Save step, an Unknown Album error caused by a trailing space, and the logic for routing images into the right category. The interesting part is the debugging process: identifying why an automation fails silently and fixing it systematically without a traditional error log.</p>
+        <div class="project-tech">
+          <span class="tech-tag">iOS Shortcuts</span><span class="tech-tag">Apple Intelligence</span><span class="tech-tag">Automation debugging</span><span class="tech-tag">Case study documentation</span>
+        </div>
+        <div class="project-media">
+          <img class="project-hero-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-flow.PNG" alt="iOS Shortcut flow" onclick="openLightbox(this)" />
+          <button class="see-screenshots" onclick="toggleScreenshots(this)">
+            See screenshots <span class="arrow">›</span>
+          </button>
+          <div class="screenshots-drawer hidden">
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/Shortcut-detail.PNG" alt="iOS Shortcut detail" onclick="openLightbox(this)" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW I THINK -->
+  <section id="thinking">
+    <div class="section-label">How I think</div>
+    <div class="thinking-grid">
+      <div class="thinking-card">
+        <span class="thinking-accent">Process first</span>
+        <h3>Processes before tools</h3>
+        <p>I build the workflow first, then find the right tool for it. Most of these projects started as a problem I kept running into — not as an excuse to try something new.</p>
+      </div>
+      <div class="thinking-card">
+        <span class="thinking-accent">Iteration</span>
+        <h3>Iterate in public</h3>
+        <p>None of these were built in one session. The plan-my-week skill has been corrected, extended, and debugged across a dozen conversations. That's the real work.</p>
+      </div>
+      <div class="thinking-card">
+        <span class="thinking-accent">Infrastructure</span>
+        <h3>AI as infrastructure</h3>
+        <p>I'm interested in AI as operational infrastructure — not a chatbot to ask questions, but a system you configure to do consistent, repeatable work on your behalf.</p>
+      </div>
+      <div class="thinking-card">
+        <span class="thinking-accent">Architecture</span>
+        <h3>Content is structure</h3>
+        <p>Two of these projects are built entirely from documents — no code. Good knowledge architecture is as valuable as good code architecture.</p>
+      </div>
+      <div class="thinking-card">
+        <span class="thinking-accent">Scale thinking</span>
+        <h3>Small problems are real problems</h3>
+        <p>A grocery price comparison and a lunchbox planner aren't glamorous. But building them fast and well, with the right tradeoffs, is exactly what good product thinking looks like at scale.</p>
+      </div>
+      <div class="thinking-card">
+        <span class="thinking-accent">Learning</span>
+        <h3>Learning by doing</h3>
+        <p>I'm also studying TEFL — and built my study system in the same environment I use for everything else. Learning about a domain and building tools for that domain are the same activity for me.</p>
       </div>
     </div>
+  </section>
 
-    <div class="about-sidebar">
-      <div class="about-sidebar-item">
-        <h4>Background</h4>
-        <p>BA Politics & English, Rhodes University · 10+ years digital delivery, product & programme ops</p>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <div class="about-layout">
+      <div>
+        <p class="about-intro">Senior digital delivery and product leader. 10+ years across heritage institutions, high-growth businesses, and international non-profits.</p>
+        <p class="about-body">I've led programme operations across 5+ regions, shipped visitor-facing platforms, built internal tooling, and redesigned how organisations deliver at scale.<br><br>These days I operate fractionally from Bali — bringing senior delivery experience to organisations that need it without a full-time headcount. I work well with distributed teams, am well-suited to Australia and UAE-based organisations, and have full availability across UK business hours where needed.<br><br>The projects on this page are what I build in the margins. I'm not a developer — I'm someone who understands systems, thinks in processes, and has learned to use AI as operational infrastructure rather than a shortcut. That combination, I think, is increasingly useful.<br><br>Available for remote fractional, part-time, or contract engagements — 20–30 hrs/week.</p>
+        <a class="about-cta" href="https://www.linkedin.com/in/amyann-mead/" target="_blank">
+          Connect on LinkedIn
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+        </a>
       </div>
-      <div class="about-sidebar-item">
-        <h4>Currently</h4>
-        <p>Fractional Head of Delivery & Ops · Khaya Marlow (founder) · TEFL Level 5 Diploma</p>
-      </div>
-      <div class="about-sidebar-item">
-        <h4>Based</h4>
-        <p>Sanur, Bali — UTC+8. Well-suited to AU and UAE-based teams. UK hours crossover available.</p>
-      </div>
-      <div class="about-sidebar-item">
-        <h4>Contact</h4>
-        <p>
-          <a href="mailto:amz.mead@gmail.com" style="color: var(--accent); text-decoration: none; display: block; margin-bottom: 0.3rem;">amz.mead@gmail.com ↗</a>
-          <a href="https://www.linkedin.com/in/amyann-mead/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn ↗</a>
-        </p>
+      <div class="about-sidebar">
+        <div class="about-card">
+          <div class="about-card-label">Background</div>
+          <div class="about-card-val">BA Politics & English, Rhodes University<br>10+ years digital delivery, product & programme ops</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Currently</div>
+          <div class="about-card-val">Fractional Head of Delivery & Ops<br>Khaya Marlow (founder)<br>TEFL Level 5 Diploma</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Based</div>
+          <div class="about-card-val">Sanur, Bali — UTC+8<br>Well-suited to AU and UAE-based teams<br>UK hours crossover available</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Availability</div>
+          <div class="about-card-val">Remote fractional, part-time, or contract<br>20–30 hrs/week</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Contact</div>
+          <div class="about-card-val">
+            <a href="mailto:amz.mead@gmail.com" style="color: var(--sage-dark);">amz.mead@gmail.com</a><br>
+            <a href="https://www.linkedin.com/in/amyann-mead/" target="_blank" style="color: var(--sage-dark);">LinkedIn ↗</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+</main>
 
 <footer>
   <span class="footer-name">Amy Mead</span>
-  <ul class="footer-links">
-    <li><a href="https://www.linkedin.com/in/amyann-mead/">LinkedIn</a></li>
-    <li><a href="#">↑ Back to top</a></li>
-  </ul>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/amyann-mead/" target="_blank">LinkedIn ↗</a>
+    <a href="#projects">Projects</a>
+    <a href="#">↑ Top</a>
+  </div>
 </footer>
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 60);
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
-
-
 <!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox">
-  <button class="lightbox-close" id="lightbox-close">✕</button>
-  <div class="lightbox-inner">
-    <button class="lightbox-btn" id="lightbox-prev">‹</button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="">
-    <button class="lightbox-btn" id="lightbox-next">›</button>
-  </div>
-  <div class="lightbox-counter" id="lightbox-counter"></div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <img id="lightbox-img" src="" alt="" />
 </div>
 
 <script>
-// Add gallery-img class to all project images
-document.querySelectorAll('.project-card img').forEach((img, i) => {
-  img.classList.add('gallery-img');
-  img.dataset.index = i;
-});
-
-const allImgs = () => Array.from(document.querySelectorAll('.gallery-img'));
-let currentIndex = 0;
-
-function openLightbox(index) {
-  const imgs = allImgs();
-  currentIndex = index;
-  document.getElementById('lightbox-img').src = imgs[index].src;
-  document.getElementById('lightbox-img').alt = imgs[index].alt;
-  document.getElementById('lightbox-counter').textContent = (index + 1) + ' / ' + imgs.length;
-  document.getElementById('lightbox').classList.add('active');
-  document.body.style.overflow = 'hidden';
+function openLightbox(img) {
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox').classList.add('open');
 }
-
 function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-  document.body.style.overflow = '';
+  document.getElementById('lightbox').classList.remove('open');
 }
-
-function navigate(dir) {
-  const imgs = allImgs();
-  currentIndex = (currentIndex + dir + imgs.length) % imgs.length;
-  document.getElementById('lightbox-img').src = imgs[currentIndex].src;
-  document.getElementById('lightbox-img').alt = imgs[currentIndex].alt;
-  document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + imgs.length;
+function toggleScreenshots(btn) {
+  var drawer = btn.nextElementSibling;
+  var isHidden = drawer.classList.contains('hidden');
+  if (isHidden) {
+    drawer.classList.remove('hidden');
+    btn.classList.add('open');
+  } else {
+    drawer.classList.add('hidden');
+    btn.classList.remove('open');
+  }
 }
-
-document.addEventListener('click', e => {
-  if (e.target.classList.contains('gallery-img')) {
-    openLightbox(parseInt(e.target.dataset.index));
-  }
-});
-
-document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-document.getElementById('lightbox-prev').addEventListener('click', () => navigate(-1));
-document.getElementById('lightbox-next').addEventListener('click', () => navigate(1));
-document.getElementById('lightbox').addEventListener('click', e => {
-  if (e.target === document.getElementById('lightbox')) closeLightbox();
-});
-
-document.addEventListener('keydown', e => {
-  if (!document.getElementById('lightbox').classList.contains('active')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') navigate(-1);
-  if (e.key === 'ArrowRight') navigate(1);
-});
-</script>
-
-
-<!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" id="lightbox-close">×</button>
-    <button class="lightbox-arrow lightbox-prev" id="lightbox-prev">&#8249;</button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="">
-    <button class="lightbox-arrow lightbox-next" id="lightbox-next">&#8250;</button>
-    <div class="lightbox-counter" id="lightbox-counter"></div>
-  </div>
-</div>
-
-<script>
-// Toggle strip
-function toggleStrip(btn) {
-  const strip = btn.nextElementSibling;
-  strip.classList.toggle('open');
-  btn.classList.toggle('open');
-  btn.querySelector('.arrow').textContent = btn.classList.contains('open') ? '›' : '›';
-}
-
-// Lightbox
-(function() {
-  let gallery = [];
-  let idx = 0;
-
-  const overlay = document.getElementById('lightbox');
-  const img = document.getElementById('lightbox-img');
-  const counter = document.getElementById('lightbox-counter');
-  const prev = document.getElementById('lightbox-prev');
-  const next = document.getElementById('lightbox-next');
-
-  function show() {
-    img.src = gallery[idx];
-    counter.textContent = (idx + 1) + ' / ' + gallery.length;
-    prev.style.display = gallery.length > 1 ? 'flex' : 'none';
-    next.style.display = gallery.length > 1 ? 'flex' : 'none';
-  }
-
-  function open(imgs, i) {
-    gallery = imgs; idx = i;
-    show();
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function close() {
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  document.getElementById('lightbox-close').onclick = close;
-  overlay.onclick = function(e) { if (e.target === this) close(); };
-  prev.onclick = function(e) { e.stopPropagation(); idx = (idx - 1 + gallery.length) % gallery.length; show(); };
-  next.onclick = function(e) { e.stopPropagation(); idx = (idx + 1) % gallery.length; show(); };
-  document.addEventListener('keydown', function(e) {
-    if (!overlay.classList.contains('active')) return;
-    if (e.key === 'Escape') close();
-    if (e.key === 'ArrowLeft') { idx = (idx - 1 + gallery.length) % gallery.length; show(); }
-    if (e.key === 'ArrowRight') { idx = (idx + 1) % gallery.length; show(); }
-  });
-
-  // Featured image click — opens lightbox with full group
-  document.querySelectorAll('.featured-img-wrap.gallery-img').forEach(function(wrap) {
-    wrap.onclick = function() {
-      const group = this.closest('.gallery-group');
-      const thumbs = Array.from(group.querySelectorAll('.thumb'));
-      const srcs = thumbs.length ? thumbs.map(t => t.src) : [this.querySelector('img').src];
-      open(srcs, 0);
-    };
-  });
-
-  // Thumbnail click — opens at that index
-  document.querySelectorAll('.thumb.gallery-img').forEach(function(thumb) {
-    thumb.onclick = function() {
-      const strip = this.closest('.thumbnail-strip');
-      const thumbs = Array.from(strip.querySelectorAll('.thumb'));
-      const srcs = thumbs.map(t => t.src);
-      open(srcs, thumbs.indexOf(this));
-    };
-  });
-})();
 </script>
 
 </body>
