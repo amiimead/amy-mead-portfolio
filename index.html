@@ -967,6 +967,7 @@ document.addEventListener('keydown', e => {
 
 <script>
 // Lightbox
+(function() {
 let currentGallery = [];
 let currentIndex = 0;
 
@@ -1020,6 +1021,7 @@ document.querySelectorAll('.gallery-img').forEach(function(img) {
     openLightbox(gallery, index);
   });
 });
+})();
 </script>
 
 </body>
