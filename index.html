@@ -620,17 +620,16 @@
 
   /* GALLERY SCROLL */
   .gallery-wrap {
+    display: flex !important;
+    flex-wrap: nowrap !important;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 0.5rem;
+    gap: 0.75rem;
   }
   .gallery-wrap::-webkit-scrollbar { display: none; }
-  .gallery-wrap img { flex-shrink: 0; }
-
-  @media (max-width: 760px) {
-    .gallery-wrap { flex-wrap: nowrap; }
-  }
+  .gallery-wrap img { flex-shrink: 0 !important; }
 
   /* Scroll animation */
   .fade-in {
