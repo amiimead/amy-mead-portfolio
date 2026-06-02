@@ -1,4 +1,11 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
+
+// ── Analytics helper ──────────────────────────────────────────
+function track(eventName, params = {}) {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", eventName, params);
+  }
+}
 
 const C = {
   sage:    "#7B9669",
@@ -102,7 +109,7 @@ function ContactChips({ contact }) {
       {items.map((item, i) => (
         item.href ? (
           <a key={i} href={item.href} target="_blank" rel="noopener noreferrer"
-            onClick={e => e.stopPropagation()}
+            onClick={e => { e.stopPropagation(); track("contact_tap", { type: item.icon, label: item.label }); }}
             style={{ display: "flex", alignItems: "center", gap: 8, background: C.cream, borderRadius: 10, padding: "10px 12px", fontSize: "0.85rem", color: C.forest, textDecoration: "none", fontWeight: 500, border: `1px solid #d8e0d2` }}>
             <span>{item.icon}</span><span>{item.label}</span>
             <span style={{ marginLeft: "auto", color: C.textSoft, fontSize: "0.75rem" }}>tap to open →</span>
@@ -121,7 +128,7 @@ function Card({ rec, onEdit, onDelete, isAdmin }) {
   const [open, setOpen] = useState(false);
   const cat = categories.find(c => c.id === rec.category);
   return (
-    <div onClick={() => setOpen(o => !o)} style={{ background: C.white, borderRadius: 16, overflow: "hidden", boxShadow: "0 2px 14px rgba(64,78,59,0.09)", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", border: `2px solid ${C.forest}` }}>
+    <div onClick={() => { setOpen(o => !o); if (!open) track("card_open", { name: rec.name, category: rec.category }); }} style={{ background: C.white, borderRadius: 16, overflow: "hidden", boxShadow: "0 2px 14px rgba(64,78,59,0.09)", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", border: `2px solid ${C.forest}` }}>
       <div style={{ height: 4, background: `linear-gradient(90deg, ${C.sage}, ${C.mint})` }} />
       <div style={{ padding: "18px 18px 16px" }}>
         <div style={{ fontSize: 13, letterSpacing: "0.1em", textTransform: "uppercase", color: C.steel, marginBottom: 6, fontWeight: 600 }}>
@@ -143,7 +150,7 @@ function Card({ rec, onEdit, onDelete, isAdmin }) {
             )}
             {rec.reviewUrl && (
               <a href={rec.reviewUrl} target="_blank" rel="noopener noreferrer"
-                onClick={e => e.stopPropagation()}
+                onClick={e => { e.stopPropagation(); track("review_tap", { name: rec.name }); }}
                 style={{ display: "flex", alignItems: "center", gap: 8, background: "#edf2eb", borderRadius: 10, padding: "10px 12px", fontSize: "0.85rem", color: C.forest, textDecoration: "none", fontWeight: 600, border: `1px solid #c8ddc2`, marginTop: 8 }}>
                 <span>⭐</span><span>See reviews</span>
                 <span style={{ marginLeft: "auto", color: C.textSoft, fontSize: "0.75rem" }}>tap to open →</span>
@@ -247,6 +254,7 @@ function LeadGen() {
       ? encodeURIComponent(`Hi! My name is ${name} and I'm looking for:\n\n${need}\n\nMy WhatsApp: ${wa}\n\n(Sent via Sanur Parents' Directory)`)
       : encodeURIComponent(`Hi! My name is ${name} and I'd like to recommend:\n\n${need}\n\nMy WhatsApp: ${wa}\n\n(Sent via Sanur Parents' Directory)`);
     window.open(`https://wa.me/6282221617634?text=${msg}`, "_blank");
+    track("lead_gen_submit", { mode });
     setSent(true);
   }
 
@@ -326,6 +334,31 @@ export default function App() {
     } catch { localStorage.removeItem(STORAGE_KEY); }
   }, []);
 
+  // Scroll depth tracking
+  useEffect(() => {
+    const depths = new Set();
+    function onScroll() {
+      const scrollable = document.body.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const pct = Math.round((window.scrollY / scrollable) * 100);
+      [25, 50, 75, 100].forEach(d => {
+        if (pct >= d && !depths.has(d)) {
+          depths.add(d);
+          track("scroll_depth", { depth: `${d}%` });
+        }
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Search tracking — fires 1s after user stops typing
+  useEffect(() => {
+    if (!search) return;
+    const t = setTimeout(() => track("search", { term: search, results: filtered.length }), 1000);
+    return () => clearTimeout(t);
+  }, [search, filtered.length]);
+
   function saveRecs(r) { setRecs(r); try { localStorage.setItem(STORAGE_KEY, JSON.stringify(r)); } catch {} }
   function handleSave(rec) {
     const exists = recs.find(r => r.id === rec.id);
@@ -377,7 +410,7 @@ export default function App() {
         <div style={{ position: "relative" }}>
           <div style={{ padding: "0 16px", overflowX: "auto", display: "flex", gap: 8, scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
             {categories.map(cat => (
-              <button key={cat.id} onClick={() => setActiveCat(activeCat === cat.id && cat.id !== "all" ? "all" : cat.id)} style={{ whiteSpace: "nowrap", padding: "8px 16px", borderRadius: 50, border: activeCat === cat.id ? `2px solid ${C.forest}` : `1.5px solid #d0d9cb`, background: activeCat === cat.id ? C.forest : C.white, color: activeCat === cat.id ? C.white : C.textMid, fontSize: "0.82rem", fontWeight: activeCat === cat.id ? 700 : 400, cursor: "pointer", transition: "all 0.15s", fontFamily: "'DM Sans', sans-serif", flexShrink: 0 }}>
+              <button key={cat.id} onClick={() => { const next = activeCat === cat.id && cat.id !== "all" ? "all" : cat.id; setActiveCat(next); track("category_filter", { category: next }); }} style={{ whiteSpace: "nowrap", padding: "8px 16px", borderRadius: 50, border: activeCat === cat.id ? `2px solid ${C.forest}` : `1.5px solid #d0d9cb`, background: activeCat === cat.id ? C.forest : C.white, color: activeCat === cat.id ? C.white : C.textMid, fontSize: "0.82rem", fontWeight: activeCat === cat.id ? 700 : 400, cursor: "pointer", transition: "all 0.15s", fontFamily: "'DM Sans', sans-serif", flexShrink: 0 }}>
                 {cat.emoji} {cat.label}
               </button>
             ))}
