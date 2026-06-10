@@ -162,7 +162,7 @@ footer { border-top: 1px solid rgba(58,56,48,0.1); padding: 32px 40px; max-width
     <h1>Building things.<br><em>Optimising everything.</em></h1>
     <p class="hero-sub">I'm Amy — a senior digital delivery and product leader with 10+ years across heritage institutions, high-growth businesses, and international non-profits. This isn't a CV. It's a record of what I build in my own time, because I find it genuinely interesting.</p>
     <div class="hero-stats">
-      <div><div class="hero-stat-num">11</div><div class="hero-stat-label">Projects</div></div>
+      <div><div class="hero-stat-num">8</div><div class="hero-stat-label">Projects</div></div>
       <div><div class="hero-stat-num">5</div><div class="hero-stat-label">Automations built</div></div>
       <div><div class="hero-stat-num">10+</div><div class="hero-stat-label">Years in digital</div></div>
     </div>
@@ -233,30 +233,31 @@ footer { border-top: 1px solid rgba(58,56,48,0.1); padding: 32px 40px; max-width
       <div class="project-card">
         <div class="project-header">
           <span class="project-num">04</span>
-          <span class="project-title">TEFL Curriculum Reference System</span>
-          <span class="project-type type-ai">AI Build</span>
+          <span class="project-title">Sanur Parents' Directory</span>
+          <span class="project-type type-product">Product</span>
         </div>
-        <p class="project-desc">A 27-file structured reference library covering the full TEFL curriculum — grammar, phonology, methodology, lesson planning, error correction. Paired with PDFs, phoneme charts, and IPA visuals. Built as a queryable knowledge base for exam prep and lesson planning.</p>
+        <p class="project-desc">A mobile-optimised web app that gives community recommendations a permanent home — places expat families in Sanur have actually used and vouched for, organised by category, with contact chips that open in the right app (WhatsApp in WhatsApp, Instagram in Instagram). Includes a password-protected admin panel, JSON export workflow, Google Analytics with custom event tracking, and localStorage versioning to prevent cache conflicts on deploy. Live at <a href="https://sanur-directory.netlify.app" target="_blank" style="color:var(--sage-dark);text-decoration:underline;text-decoration-color:rgba(122,154,114,0.4);">sanur-directory.netlify.app</a>.</p>
         <div class="project-tech">
-          <span class="tech-tag">Claude Code</span><span class="tech-tag">Markdown</span><span class="tech-tag">PDF</span><span class="tech-tag">PNG</span><span class="tech-tag">Knowledge base architecture</span>
+          <span class="tech-tag">React</span><span class="tech-tag">Vite</span><span class="tech-tag">Netlify</span><span class="tech-tag">Google Analytics</span><span class="tech-tag">localStorage versioning</span>
+        </div>
+        <div class="project-media">
+          <img class="project-hero-img" src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/sanur-home.PNG" alt="Sanur Parents Directory homepage" onclick="openLightbox(this)" />
+          <button class="see-screenshots" onclick="toggleScreenshots(this)">
+            See screenshots <span class="arrow">›</span>
+          </button>
+          <div class="screenshots-drawer hidden">
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/sanur-expanded.PNG" alt="Expanded recommendation card" onclick="openLightbox(this)" />
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/sanur-card.PNG" alt="Card with contact chips" onclick="openLightbox(this)" />
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/sanur-form.PNG" alt="Add recommendation form" onclick="openLightbox(this)" />
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/sanur-request.PNG" alt="Request form" onclick="openLightbox(this)" />
+            <img src="https://raw.githubusercontent.com/amiimead/amy-mead-portfolio/main/sanur-home2.PNG" alt="Homepage with admin mode" onclick="openLightbox(this)" />
+          </div>
         </div>
       </div>
 
       <div class="project-card">
         <div class="project-header">
           <span class="project-num">05</span>
-          <span class="project-title">Cross-Platform Gift Registry — Product Brief</span>
-          <span class="project-type type-product">Product</span>
-        </div>
-        <p class="project-desc">Full product brief for an original app concept: a universal wishlist that accepts links from any platform (TikTok, Instagram, Shopify, any URL), with purchase coordination to prevent duplicate gifting. Includes competitive analysis against Amazon, Pinterest, Zola, and Elfster, and a 10-user research plan.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Product strategy</span><span class="tech-tag">Competitive analysis</span><span class="tech-tag">User research design</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-num">06</span>
           <span class="project-title">"Even When" — Illustrated Picture Book</span>
           <span class="project-type type-ai">AI Build</span>
         </div>
@@ -268,7 +269,7 @@ footer { border-top: 1px solid rgba(58,56,48,0.1); padding: 32px 40px; max-width
 
       <div class="project-card">
         <div class="project-header">
-          <span class="project-num">07</span>
+          <span class="project-num">06</span>
           <span class="project-title">Google Calendar Automation System</span>
           <span class="project-type type-automation">Automation</span>
         </div>
@@ -280,7 +281,7 @@ footer { border-top: 1px solid rgba(58,56,48,0.1); padding: 32px 40px; max-width
 
       <div class="project-card">
         <div class="project-header">
-          <span class="project-num">08</span>
+          <span class="project-num">07</span>
           <span class="project-title">Grocery Price Comparison Tool</span>
           <span class="project-type type-automation">Automation</span>
         </div>
@@ -292,31 +293,7 @@ footer { border-top: 1px solid rgba(58,56,48,0.1); padding: 32px 40px; max-width
 
       <div class="project-card">
         <div class="project-header">
-          <span class="project-num">09</span>
-          <span class="project-title">Khaya Marlow — Brand Build & Content System</span>
-          <span class="project-type type-content">Content</span>
-        </div>
-        <p class="project-desc">Running both sides simultaneously: building the Shopify store end-to-end (theme configuration, app setup, payment portal, product catalogue, integrations) and developing an ongoing Instagram and TikTok content workflow. Iterative caption development with feedback loops that progressively refine brand voice — less choppy, more organic.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Brand voice</span><span class="tech-tag">Social media</span><span class="tech-tag">Iterative prompting</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-num">10</span>
-          <span class="project-title">Personal Field Guide — How I Work Best</span>
-          <span class="project-type type-design">Design</span>
-        </div>
-        <p class="project-desc">A self-knowledge document covering optimal working conditions, green and red flags, and overwhelm responses — built through an AI-led elicitation process and formatted for visual design use. More interesting as a workflow pattern than as an output.</p>
-        <div class="project-tech">
-          <span class="tech-tag">Structured elicitation</span><span class="tech-tag">Personal systems</span><span class="tech-tag">Design-ready output</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-num">11</span>
+          <span class="project-num">08</span>
           <span class="project-title">AI Screenshot Sorter — iOS Automation</span>
           <span class="project-type type-automation">Automation</span>
         </div>
@@ -360,7 +337,7 @@ footer { border-top: 1px solid rgba(58,56,48,0.1); padding: 32px 40px; max-width
       <div class="thinking-card">
         <span class="thinking-accent">Architecture</span>
         <h3>Content is structure</h3>
-        <p>Two of these projects are built entirely from documents — no code. Good knowledge architecture is as valuable as good code architecture.</p>
+        <p>One of these projects is built entirely from documents — no code. Good knowledge architecture is as valuable as good code architecture.</p>
       </div>
       <div class="thinking-card">
         <span class="thinking-accent">Scale thinking</span>
@@ -370,7 +347,7 @@ footer { border-top: 1px solid rgba(58,56,48,0.1); padding: 32px 40px; max-width
       <div class="thinking-card">
         <span class="thinking-accent">Learning</span>
         <h3>Learning by doing</h3>
-        <p>I'm also studying TEFL — and built my study system in the same environment I use for everything else. Learning about a domain and building tools for that domain are the same activity for me.</p>
+        <p>I built my study system in the same environment I use for everything else. Learning about a domain and building tools for that domain are the same activity for me.</p>
       </div>
     </div>
   </section>
